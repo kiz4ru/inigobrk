@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>404 — Página no encontrada · Iñigo Bruk</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== Tokens: mismos que el portfolio ===== */
+    :root {
+      --bg:        #0F1115;
+      --surface:   #16191F;
+      --border:    #262B34;
+      --text:      #E7E9EE;
+      --text-dim:  #9AA1AC;
+      --accent:    #5B8DEF;
+      --accent-2:  #7BA6F5;
+      --accent-ink:#0B1220;
+      --pad: clamp(1.2rem, 4vw, 3rem);
+      --ease: cubic-bezier(.22,.61,.36,1);
+      --elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --font-display: "Space Grotesk", system-ui, sans-serif;
+      --font-body: "Inter", system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    }
+    :root[data-theme="light"] {
+      --bg:        #F6F7F9;
+      --surface:   #FFFFFF;
+      --border:    #E1E4EA;
+      --text:      #171A1F;
+      --text-dim:  #5A626E;
+      --accent:    #2F63D6;
+      --accent-2:  #244FAC;
+      --accent-ink:#FFFFFF;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: calc(var(--pad) + 2rem) var(--pad);
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Fondo sutil, en la línea del hero del sitio */
+    body::before {
+      content: "";
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(46vw 46vw at 78% 12%,
+          color-mix(in srgb, var(--accent) 22%, transparent), transparent 62%),
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: auto, 64px 64px, 64px 64px;
+      -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 40%, #000 0%, transparent 78%);
+              mask-image: radial-gradient(ellipse 75% 65% at 50% 40%, #000 0%, transparent 78%);
+      opacity: .5;
+    }
+
+    main {
+      max-width: 40rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(1rem, 3vw, 1.75rem);
+    }
+
+    .kicker {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* ===== Titular gigante 404 ===== */
+    .glitch {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(6rem, 26vw, 15rem);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      display: flex;
+      justify-content: center;
+    }
+    .glitch .char {
+      display: inline-block;
+      transform-origin: 50% 100%;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      color: var(--text);
+      transition: color .2s var(--ease);
+    }
+    .glitch .char:hover { color: var(--accent); }
+    .glitch .char.space { width: 0.28em; cursor: default; }
+
+    h1 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.5rem, 4.5vw, 2.4rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .sub {
+      color: var(--text-dim);
+      font-size: clamp(0.95rem, 2.2vw, 1.05rem);
+      max-width: 32ch;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      padding: 0.85rem 1.6rem;
+      background: var(--accent);
+      color: var(--accent-ink);
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .18s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
+    }
+    .btn:hover { background: var(--accent-2); border-color: var(--accent-2); transform: translateY(-2px); }
+    .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    /* ===== Entrada con stagger ===== */
+    .glitch .char {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .glitch.in .char {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity .5s var(--ease), transform .55s var(--elastic);
+      transition-delay: var(--d, 0ms);
+    }
+
+    /* ===== Animaciones de hover (cíclicas por índice) ===== */
+    @keyframes pop {
+      0%   { transform: scale(1); }
+      40%  { transform: scale(1.35); }
+      100% { transform: scale(1); }
+    }
+    @keyframes bounce {
+      0%   { transform: translateY(0); }
+      35%  { transform: translateY(-28%); }
+      60%  { transform: translateY(6%); }
+      100% { transform: translateY(0); }
+    }
+    @keyframes wobble {
+      0%   { transform: rotate(0deg); }
+      25%  { transform: rotate(-14deg); }
+      55%  { transform: rotate(10deg); }
+      80%  { transform: rotate(-4deg); }
+      100% { transform: rotate(0deg); }
+    }
+    @keyframes squash {
+      0%   { transform: scale(1, 1); }
+      40%  { transform: scale(1.3, 0.7); }
+      70%  { transform: scale(0.85, 1.15); }
+      100% { transform: scale(1, 1); }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%  { transform: translateX(-6px); }
+      40%  { transform: translateX(6px); }
+      60%  { transform: translateX(-4px); }
+      80%  { transform: translateX(4px); }
+    }
+
+    .glitch .char.anim-0 { animation: pop    .5s var(--elastic); }
+    .glitch .char.anim-1 { animation: bounce .55s var(--elastic); transform-origin: 50% 100%; }
+    .glitch .char.anim-2 { animation: wobble .5s var(--elastic); transform-origin: 50% 90%; }
+    .glitch .char.anim-3 { animation: squash .5s var(--elastic); transform-origin: 50% 100%; }
+    .glitch .char.anim-4 { animation: shake  .45s ease-in-out; }
+
+    /* ===== prefers-reduced-motion: todo estático ===== */
+    @media (prefers-reduced-motion: reduce) {
+      .glitch .char { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .glitch.in .char { transition: none !important; }
+      .glitch .char.anim-0,
+      .glitch .char.anim-1,
+      .glitch .char.anim-2,
+      .glitch .char.anim-3,
+      .glitch .char.anim-4 { animation: none !important; }
+      .btn:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="kicker">Error 404</p>
+
+    <div class="glitch" id="glitch" aria-label="404" role="heading" aria-level="1"></div>
+
+    <h1>Esta página se ha perdido.</h1>
+    <p class="sub">Pero tú todavía puedes volver a lo importante.</p>
+
+    <a class="btn" href="index.html">Volver al inicio</a>
+  </main>
+
+  <script>
+    (function () {
+      // Coherencia de tema con el resto del sitio (mismo localStorage key)
+      try {
+        var saved = localStorage.getItem("theme");
+        if (saved === "light" || saved === "dark") {
+          document.documentElement.dataset.theme = saved;
+        } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+          document.documentElement.dataset.theme = "light";
+        }
+      } catch (e) { /* localStorage no disponible: se queda en oscuro */ }
+
+      var REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var ANIM_COUNT = 5; // nº de @keyframes de hover
+      var container = document.getElementById("glitch");
+      var text = container.getAttribute("aria-label") || container.textContent;
+
+      // Dividir en <span> por carácter, conservando espacios
+      container.textContent = "";
+      var chars = [];
+      for (var i = 0; i < text.length; i++) {
+        var span = document.createElement("span");
+        span.setAttribute("aria-hidden", "true");
+        var ch = text[i];
+        if (ch === " ") {
+          span.className = "char space";
+          span.innerHTML = "&nbsp;";
+        } else {
+          span.className = "char";
+          span.textContent = ch;
+          span.style.setProperty("--d", (i * 50) + "ms");
+        }
+        container.appendChild(span);
+        chars.push(span);
+      }
+
+      // Entrada con stagger
+      if (REDUCED) {
+        container.classList.add("in");
+      } else {
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { container.classList.add("in"); });
+        });
+      }
+
+      // Hover: animación cíclica por índice, reiniciable
+      if (!REDUCED) {
+        chars.forEach(function (span, i) {
+          if (span.classList.contains("space")) return;
+          var animClass = "anim-" + (i % ANIM_COUNT);
+          span.addEventListener("mouseenter", function () {
+            span.classList.add(animClass);
+          });
+          span.addEventListener("animationend", function () {
+            span.classList.remove(animClass);
+          });
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
