@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kiz4ru.github.io/inigobrk/sitemap.xml

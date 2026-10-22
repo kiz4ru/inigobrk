@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0C0F14"/>
+      <stop offset="1" stop-color="#080A0D"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="78%" cy="30%" r="55%">
+      <stop offset="0" stop-color="#C6F24E" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#C6F24E" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#252B34" stroke-width="1" opacity="0.5"/>
+    </pattern>
+  </defs>
+
+  <!-- fondo de toda la square: color de página (lo que quede fuera del recorte) -->
+  <rect width="1200" height="1200" fill="#080A0D"/>
+
+  <!-- banda OG visible: 1200x630 centrada verticalmente (y de 285 a 915) -->
+  <g transform="translate(0,285)">
+    <rect width="1200" height="630" fill="url(#bg)"/>
+    <rect width="1200" height="630" fill="url(#grid)"/>
+    <rect width="1200" height="630" fill="url(#glow)"/>
+    <rect x="24" y="24" width="1152" height="582" rx="22" fill="none" stroke="#252B34" stroke-width="1.5"/>
+
+    <!-- brk. mark + nombre -->
+    <g transform="translate(80, 72)">
+      <rect width="56" height="56" rx="14" fill="#10141A" stroke="#252B34" stroke-width="1.5"/>
+      <text x="24" y="30" dominant-baseline="central" text-anchor="middle"
+            font-family="'Geist','Space Grotesk',sans-serif" font-size="30" font-weight="600" fill="#F3F5F7">B</text>
+      <circle cx="41" cy="40" r="3.6" fill="#C6F24E"/>
+      <text x="76" y="30" dominant-baseline="central"
+            font-family="'Geist','Space Grotesk',sans-serif" font-size="23" font-weight="600" fill="#F3F5F7">Iñigo Bruk</text>
+    </g>
+
+    <!-- eyebrow -->
+    <g transform="translate(82, 270)">
+      <line x1="0" y1="0" x2="32" y2="0" stroke="#C6F24E" stroke-width="2"/>
+      <text x="46" y="1" dominant-baseline="central"
+            font-family="'Geist Mono','JetBrains Mono',monospace" font-size="18" letter-spacing="2.5" fill="#C6F24E">SYSTEMS · CYBERSECURITY · SOFTWARE</text>
+    </g>
+
+    <!-- título (2 líneas) -->
+    <text x="80" y="350" font-family="'Geist','Space Grotesk',sans-serif" font-size="66" font-weight="600" letter-spacing="-2" fill="#F3F5F7">Construyo, protejo</text>
+    <text x="80" y="428" font-family="'Geist','Space Grotesk',sans-serif" font-size="66" font-weight="600" letter-spacing="-2" fill="#F3F5F7">y mantengo <tspan fill="#C6F24E">sistemas reales</tspan>.</text>
+
+    <!-- pie -->
+    <text x="82" y="540" font-family="'Geist Mono','JetBrains Mono',monospace" font-size="18" letter-spacing="0.5" fill="#929BA8">Systems Operator · SOC 24×7 · Pentesting AD &amp; Linux · Homelab Proxmox</text>
+
+    <!-- núcleo de nodos -->
+    <g stroke="#3A4656" stroke-width="1.5" fill="none">
+      <line x1="1015" y1="120" x2="1100" y2="180"/>
+      <line x1="1100" y1="180" x2="1035" y2="258"/>
+      <line x1="1035" y1="258" x2="965" y2="188"/>
+      <line x1="965" y1="188" x2="1015" y2="120"/>
+      <line x1="1015" y1="120" x2="1035" y2="258"/>
+    </g>
+    <circle cx="1015" cy="120" r="6" fill="#C6F24E"/>
+    <circle cx="1035" cy="258" r="5" fill="#C6F24E"/>
+    <circle cx="1100" cy="180" r="5" fill="#3A4656"/>
+    <circle cx="965" cy="188" r="5" fill="#3A4656"/>
+  </g>
+</svg>
